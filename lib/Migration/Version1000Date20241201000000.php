@@ -47,3 +47,54 @@ class Version1000Date20241201000000 extends SimpleMigrationStep {
             $table->addColumn('id', 'bigint', [
                 'autoincrement' => true,
                 'notnull' => true,
+                'unsigned' => true,
+            ]);
+            $table->addColumn('room_id', 'string', [
+                'notnull' => true,
+                'length' => 255,
+            ]);
+            $table->addColumn('user_id', 'string', [
+                'notnull' => true,
+                'length' => 64,
+            ]);
+            $table->addColumn('joined_at', 'integer', [
+                'notnull' => true,
+            ]);
+            $table->addColumn('participant_type', 'integer', [
+                'notnull' => true,
+                'default' => 3,
+            ]);
+            $table->setPrimaryKey(['id']);
+            $table->addUniqueIndex(['room_id', 'user_id']);
+            $table->addIndex(['user_id']);
+        }
+
+        if (!$schema->hasTable('elementmatrix_user_mapping')) {
+            $table = $schema->createTable('elementmatrix_user_mapping');
+            $table->addColumn('id', 'bigint', [
+                'autoincrement' => true,
+                'notnull' => true,
+                'unsigned' => true,
+            ]);
+            $table->addColumn('nextcloud_user_id', 'string', [
+                'notnull' => true,
+                'length' => 64,
+            ]);
+            $table->addColumn('matrix_user_id', 'string', [
+                'notnull' => true,
+                'length' => 255,
+            ]);
+            $table->addColumn('access_token', 'text', [
+                'notnull' => false,
+            ]);
+            $table->addColumn('created_at', 'integer', [
+                'notnull' => true,
+            ]);
+            $table->setPrimaryKey(['id']);
+            $table->addUniqueIndex(['nextcloud_user_id']);
+            $table->addUniqueIndex(['matrix_user_id']);
+        }
+
+        return $schema;
+    }
+}                              
