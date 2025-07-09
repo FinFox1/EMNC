@@ -1,17 +1,40 @@
-Installation und Konfiguration
-
-- App Installation: Die App wird in das apps/ Verzeichnis von Nextcloud kopiert
-- Matrix Server Setup: Matrix-docker-ansible-deploy wird konfiguriert
-- Element Web Installation: Element Web wird parallel installiert
-- Konfiguration: Admin-Einstellungen werden über die Nextcloud-Oberfläche konfiguriert
-- User Sync: Benutzer werden mit dem Sync-Befehl synchronisiert
-
-Diese Implementierung bietet:
-
-- Vollständige API-Kompatibilität mit Nextcloud Talk
-- Nahtlose Integration in die Nextcloud-Benutzeroberfläche
-- Datei-, Kalender- und Kontakte-Integration
-- Matrix-basierte Chat- und Videokonferenz-Funktionalität
-- Skalierbare Architektur mit Docker-Deployment
-
-Die Lösung ersetzt Nextcloud Talk komplett und bietet dabei erweiterte Funktionen durch die Matrix-Protokoll-Unterstützung.
+nextcloud_chat/
+├── appinfo/
+│   ├── info.xml
+│   ├── routes.php
+│   └── application.php
+├── lib/
+│   ├── Controller/
+│   │   ├── PageController.php
+│   │   ├── ApiController.php
+│   │   ├── ElementController.php
+│   │   └── MatrixController.php
+│   ├── Service/
+│   │   ├── ElementService.php
+│   │   ├── MatrixService.php
+│   │   └── ConfigService.php
+│   └── AppInfo/
+│       └── Application.php
+├── src/
+│   ├── main.js
+│   ├── App.vue
+│   ├── router/
+│   │   └── index.js
+│   ├── components/
+│   │   ├── Chat/
+│   │   ├── Call/
+│   │   └── Settings/
+│   ├── views/
+│   │   ├── ChatView.vue
+│   │   ├── CallView.vue
+│   │   └── SettingsView.vue
+│   └── store/
+│       └── index.js
+├── templates/
+│   └── index.php
+├── css/
+├── js/
+├── package.json
+├── webpack.config.js
+├── composer.json
+└── README.md
